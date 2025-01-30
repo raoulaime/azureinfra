@@ -29,9 +29,9 @@ variable "admin_username" {
 variable "source_image_reference" {
   type = map(string)
   default = {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "22_04-lts"
+    publisher = "RedHat"
+    offer     = "RHEL"
+    sku       = "93-gen2"
     version   = "latest"
   }
 }
@@ -41,6 +41,6 @@ variable "os_disk" {
   default = {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    disk_size_gb         = "30"
+    disk_size_gb         = "80"
   }
 }
