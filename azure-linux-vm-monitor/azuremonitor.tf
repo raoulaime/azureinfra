@@ -7,7 +7,7 @@ resource "azurerm_log_analytics_workspace" "workspace" {
 }
 
 resource "azurerm_virtual_machine_extension" "azure_monitor_linux_agent" {
-  name                       = "${var.project}-${var.environment}-azure_monitor_linux_agent"
+  name                       = "${var.project}-${var.environment}-azure-monitor-linux-agent"
   publisher                  = "Microsoft.Azure.Monitor"
   type                       = "AzureMonitorLinuxAgent"
   type_handler_version       = "1.21"
@@ -20,7 +20,7 @@ resource "azurerm_virtual_machine_extension" "azure_monitor_linux_agent" {
 }
 
 
-resource "azurerm_monitor_data_collection_rule" "data_rule" {
+resource "azurerm_monitor_data_collection_rule" "data_collection_rule" {
   name                = "${var.project}-${var.environment}-data-rules"
   resource_group_name = azurerm_resource_group.lab.name
   location            = var.location
@@ -52,10 +52,9 @@ resource "azurerm_monitor_data_collection_rule" "data_rule" {
   }
 }
 
-# associate to a Data Collection Rule
-resource "azurerm_monitor_data_collection_rule_association" "data_rule1" {
-  name                    = "${var.project}-${var.environment}-data_rule1-dcra"
+resource "azurerm_monitor_data_collection_rule_association" "data_rule_association" {
+  name                    = "${var.project}-${var.environment}-dcra"
   target_resource_id      = azurerm_linux_virtual_machine.linuxvm.id
-  data_collection_rule_id = azurerm_monitor_data_collection_rule.data_rule.id
-  description             = "data_rule"
+  data_collection_rule_id = azurerm_monitor_data_collection_rule.data_collection_rule.id
+  description             = "data-collection-rule-association"
 }

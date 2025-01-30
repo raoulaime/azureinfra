@@ -26,8 +26,8 @@ resource "azurerm_subnet" "subnets" {
   ]
 }
 
-resource "azurerm_network_security_group" "labvm_nsg" {
-  name                = "${var.project}-${var.environment}-labvm-nsg"
+resource "azurerm_network_security_group" "vm_snet_nsg" {
+  name                = "${var.project}-${var.environment}-vm-snet-nsg"
   location            = local.location
   resource_group_name = local.resource_group_name
 
@@ -60,7 +60,7 @@ resource "azurerm_network_security_group" "labvm_nsg" {
   ]
 }
 
-resource "azurerm_subnet_network_security_group_association" "labvm_nsglink" {
+resource "azurerm_subnet_network_security_group_association" "vm_snet_nsg_link" {
   subnet_id                 = azurerm_subnet.subnets[0].id
-  network_security_group_id = azurerm_network_security_group.labvm_nsg.id
+  network_security_group_id = azurerm_network_security_group.vm_snet_nsg.id
 }
