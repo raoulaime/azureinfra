@@ -11,7 +11,7 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "tf-demo-lab"
+    resource_group_name  = "lab-backend-rg"
     storage_account_name = "tfbackendrakit"
     container_name       = "tfstate"
     key                  = "vmlinuxmonitor.tfstate"
