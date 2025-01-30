@@ -34,7 +34,7 @@ No modules.
 | [azurerm_resource_group.lab](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 | [azurerm_subnet.subnets](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet_network_security_group_association.labvm_nsglink](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
-| [azurerm_virtual_machine_extension.AzureMonitorLinuxAgent](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
+| [azurerm_virtual_machine_extension.azure_monitor_linux_agent](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
 | [azurerm_virtual_network.lab_vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
 | [local_file.linuxpemkey](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [tls_private_key.sshkey](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
