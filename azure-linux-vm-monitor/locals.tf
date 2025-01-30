@@ -1,5 +1,5 @@
 locals {
-  resource_group_name = "lab-rg"
+  resource_group_name = "azuremonitor-lab-rg"
   location            = "canadaeast"
   virtual_network = {
     name          = "lab-vnet"

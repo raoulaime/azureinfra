@@ -34,6 +34,7 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
   }
 
   os_disk {
+    name                 = "${var.project}-${var.environment}-vm-osdisk"
     caching              = var.os_disk["caching"]
     storage_account_type = var.os_disk["storage_account_type"]
     disk_size_gb         = var.os_disk["disk_size_gb"]
