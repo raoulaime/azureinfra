@@ -17,22 +17,6 @@ data "template_file" "cloudinitdata" {
   template = file("script.sh")
 }
 
-resource "azurerm_network_interface" "vm_nic" {
-  name                = "vm-nic"
-  location            = azurerm_resource_group.lab.location
-  resource_group_name = azurerm_resource_group.lab.name
-
-  ip_configuration {
-    name                          = "internal"
-    subnet_id                     = azurerm_subnet.subnets[0].id
-    private_ip_address_allocation = "Dynamic"
-  }
-
-  depends_on = [
-    azurerm_subnet.subnets
-  ]
-}
-
 resource "azurerm_public_ip" "labvm_ip" {
   name                = "labvm_ip"
   resource_group_name = azurerm_resource_group.lab.name
@@ -42,6 +26,23 @@ resource "azurerm_public_ip" "labvm_ip" {
     azurerm_resource_group.lab
   ]
 }
+resource "azurerm_network_interface" "vm_nic" {
+  name                = "vm-nic"
+  location            = azurerm_resource_group.lab.location
+  resource_group_name = azurerm_resource_group.lab.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.subnets[0].id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.labvm_ip.id
+  }
+
+  depends_on = [
+    azurerm_subnet.subnets
+  ]
+}
+
 resource "azurerm_linux_virtual_machine" "linuxvm" {
   name                = "${var.project}-${var.environment}-vm"
   resource_group_name = azurerm_resource_group.lab.name
