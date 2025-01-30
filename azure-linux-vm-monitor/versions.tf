@@ -14,7 +14,7 @@ terraform {
     resource_group_name  = "tf-demo-lab"
     storage_account_name = "tfbackendrakit"
     container_name       = "tfstate"
-    key                  = "vmlinux.tfstate"
+    key                  = "vmlinuxmonitor.tfstate"
   }
 }
 
