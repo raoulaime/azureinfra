@@ -6,7 +6,7 @@ resource "azurerm_log_analytics_workspace" "workspace" {
   retention_in_days   = 30
 }
 
-resource "azurerm_virtual_machine_extension" "AzureMonitorLinuxAgent" {
+resource "azurerm_virtual_machine_extension" "azure_monitor_linux_agent" {
   name                       = "AzureMonitorLinuxAgent"
   publisher                  = "Microsoft.Azure.Monitor"
   type                       = "AzureMonitorLinuxAgent"
