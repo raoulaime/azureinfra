@@ -20,9 +20,9 @@ variable "vm_size" {
 }
 
 variable "admin_username" {
-  type    = string
+  type        = string
   description = "Azure VM Admin"
-  default = "azureadmin"
+  default     = "azureadmin"
 }
 
 

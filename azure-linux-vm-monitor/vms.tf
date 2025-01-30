@@ -20,7 +20,7 @@ data "template_file" "cloudinitdata" {
 resource "azurerm_linux_virtual_machine" "linuxvm" {
   name                = "${var.project}-${var.environment}-vm"
   resource_group_name = azurerm_resource_group.lab.name
-  location            = var.location
+  location            = azurerm_resource_group.lab.location
   size                = var.vm_size
   admin_username      = var.admin_username
   custom_data         = base64encode(data.template_file.cloudinitdata.rendered)
@@ -49,6 +49,5 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
     azurerm_network_interface.vm_nic,
     azurerm_resource_group.lab,
     tls_private_key.sshkey
-
   ]
 }
