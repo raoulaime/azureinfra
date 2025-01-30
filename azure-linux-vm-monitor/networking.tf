@@ -1,0 +1,92 @@
+resource "azurerm_resource_group" "lab" {
+  name     = local.resource_group_name
+  location = local.location
+}
+
+resource "azurerm_virtual_network" "lab_vnet" {
+  name                = local.virtual_network.name
+  location            = azurerm_resource_group.lab.location
+  resource_group_name = azurerm_resource_group.lab.name
+  address_space       = [local.virtual_network.address_space]
+
+  depends_on = [
+    azurerm_resource_group.lab
+  ]
+}
+
+resource "azurerm_subnet" "subnets" {
+  count                = length(local.subnets)
+  name                 = local.subnets[count.index].name
+  resource_group_name  = azurerm_resource_group.lab.name
+  virtual_network_name = azurerm_virtual_network.lab_vnet.name
+  address_prefixes     = [local.subnets[count.index].address_prefix]
+
+  depends_on = [
+    azurerm_virtual_network.lab_vnet
+  ]
+}
+
+resource "azurerm_network_interface" "vm_nic" {
+  name                = "vm-nic"
+  location            = azurerm_resource_group.lab.location
+  resource_group_name = azurerm_resource_group.lab.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.subnets[0].id
+    private_ip_address_allocation = "Dynamic"
+  }
+
+  depends_on = [
+    azurerm_subnet.subnets
+  ]
+}
+
+resource "azurerm_public_ip" "labvm_ip" {
+  name                = "labvm_ip"
+  resource_group_name = azurerm_resource_group.lab.name
+  location            = azurerm_resource_group.lab.location
+  allocation_method   = "Static"
+  depends_on = [
+    azurerm_resource_group.lab
+  ]
+}
+
+resource "azurerm_network_security_group" "labvm_nsg" {
+  name                = "labvm_nsg"
+  location            = local.location
+  resource_group_name = local.resource_group_name
+
+  security_rule {
+    name                       = "AllowSSH"
+    priority                   = 300
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "AllowHTTP"
+    priority                   = 400
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  depends_on = [
+    azurerm_resource_group.lab
+  ]
+}
+
+resource "azurerm_subnet_network_security_group_association" "labvm_nsglink" {
+  subnet_id                 = azurerm_subnet.subnets[0].id
+  network_security_group_id = azurerm_network_security_group.labvm_nsg.id
+}
