@@ -4,7 +4,7 @@ resource "tls_private_key" "sshkey" {
 }
 
 resource "local_file" "linuxpemkey" {
-  filename        = "sshkey.pem"
+  filename        = "${var.project}-${var.environment}-sshkey.pem"
   content         = tls_private_key.sshkey.private_key_pem
   file_permission = "0400"
   depends_on = [
@@ -18,7 +18,7 @@ data "template_file" "cloudinitdata" {
 }
 
 resource "azurerm_public_ip" "labvm_ip" {
-  name                = "labvm_ip"
+  name                = "${var.project}-${var.environment}-labvm-public-ip"
   resource_group_name = azurerm_resource_group.lab.name
   location            = azurerm_resource_group.lab.location
   allocation_method   = "Static"
@@ -27,7 +27,7 @@ resource "azurerm_public_ip" "labvm_ip" {
   ]
 }
 resource "azurerm_network_interface" "vm_nic" {
-  name                = "vm-nic"
+  name                = "${var.project}-${var.environment}-labvm-nic"
   location            = azurerm_resource_group.lab.location
   resource_group_name = azurerm_resource_group.lab.name
 
@@ -44,7 +44,7 @@ resource "azurerm_network_interface" "vm_nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "linuxvm" {
-  name                = "${var.project}-${var.environment}-vm"
+  name                = "${var.project}-${var.environment}-labvm"
   resource_group_name = azurerm_resource_group.lab.name
   location            = azurerm_resource_group.lab.location
   size                = var.vm_size
@@ -60,7 +60,7 @@ resource "azurerm_linux_virtual_machine" "linuxvm" {
   }
 
   os_disk {
-    name                 = "${var.project}-${var.environment}-vm-osdisk"
+    name                 = "${var.project}-${var.environment}-labvm-osdisk"
     caching              = var.os_disk["caching"]
     storage_account_type = var.os_disk["storage_account_type"]
     disk_size_gb         = var.os_disk["disk_size_gb"]

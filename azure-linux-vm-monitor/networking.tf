@@ -27,7 +27,7 @@ resource "azurerm_subnet" "subnets" {
 }
 
 resource "azurerm_network_security_group" "labvm_nsg" {
-  name                = "labvm_nsg"
+  name                = "${var.project}-${var.environment}-labvm-nsg"
   location            = local.location
   resource_group_name = local.resource_group_name
 
