@@ -1,24 +1,24 @@
-variable "az_region" {
-  default = "canadacentral"
-}
-
 variable "az_location" {
-  default = "canadacentral"
+  description = "Azure Region"
+  type        = string
 }
 
 variable "subscription_id" {
-  default = "subscription_id"
+  description = "subscription_id"
+  type        = string
 }
 
-variable "az_resource_group" {
+variable "az_resource_group_name" {
   description = "Azure Resource Group Name"
-  default     = "lab-backend-rg"
+  type        = string
 }
 
-variable "az_storage_account" {
-  default = "tfbackendrakit"
+variable "az_storage_account_name" {
+  description = "Azure Storage Account Name"
+  type        = string
 }
 
-variable "az_storage_account_container" {
-  default = "tfstate"
+variable "az_storage_account_container_name" {
+  description = "Azure Terraform Backend Storage Account Container"
+  type        = string
 }
