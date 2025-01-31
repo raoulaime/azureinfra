@@ -4,14 +4,14 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.2 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.11.0, <4.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=4.17.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.3.2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=3.11.0, <4.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=4.17.0 |
 | <a name="provider_template"></a> [template](#provider\_template) | n/a |
 
 ## Modules
@@ -42,10 +42,10 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_admin_username"></a> [admin\_username](#input\_admin\_username) | Azure VM Admin | `string` | `"azureadmin"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | n/a | `string` | `"dev"` | no |
-| <a name="input_location"></a> [location](#input\_location) | n/a | `string` | `"canadaeast"` | no |
 | <a name="input_os_disk"></a> [os\_disk](#input\_os\_disk) | n/a | `map(string)` | <pre>{<br/>  "caching": "ReadWrite",<br/>  "disk_size_gb": "80",<br/>  "storage_account_type": "Standard_LRS"<br/>}</pre> | no |
-| <a name="input_project"></a> [project](#input\_project) | n/a | `string` | `"lab_rg"` | no |
+| <a name="input_project"></a> [project](#input\_project) | n/a | `string` | `"lab"` | no |
 | <a name="input_source_image_reference"></a> [source\_image\_reference](#input\_source\_image\_reference) | n/a | `map(string)` | <pre>{<br/>  "offer": "RHEL",<br/>  "publisher": "RedHat",<br/>  "sku": "93-gen2",<br/>  "version": "latest"<br/>}</pre> | no |
+| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | subscription\_id | `any` | n/a | yes |
 | <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | Virtual machine sku | `string` | `"Standard_DS1_v2"` | no |
 
 ## Outputs
