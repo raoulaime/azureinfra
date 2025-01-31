@@ -5,13 +5,9 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">=4.17.0"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.3.2"
-    }
   }
   backend "azurerm" {
-    resource_group_name  = "lab-backend-rg"
+    resource_group_name  = "tfbackend-rg"
     storage_account_name = "tfbackendrakit"
     container_name       = "tfstate"
     key                  = "vmlinuxmonitor.tfstate"
@@ -26,5 +22,3 @@ provider "azurerm" {
   }
    subscription_id = var.subscription_id
 }
-
-provider "random" {}
