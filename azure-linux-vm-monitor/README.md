@@ -12,9 +12,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=3.11.0, <4.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | n/a |
 | <a name="provider_template"></a> [template](#provider\_template) | n/a |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | n/a |
 
 ## Modules
 
@@ -36,8 +34,6 @@ No modules.
 | [azurerm_subnet_network_security_group_association.vm_snet_nsg_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
 | [azurerm_virtual_machine_extension.azure_monitor_linux_agent](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
 | [azurerm_virtual_network.lab_vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
-| [local_file.linuxpemkey](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [tls_private_key.sshkey](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 | [template_file.cloudinitdata](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Inputs
