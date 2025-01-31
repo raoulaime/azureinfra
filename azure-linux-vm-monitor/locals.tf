@@ -16,4 +16,5 @@ locals {
       address_prefix = "10.0.1.0/24"
     }
   ]
+  ssh_public_key = file("~/.ssh/id_rsa.pub")
 }
