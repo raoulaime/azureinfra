@@ -17,7 +17,7 @@ resource "azurerm_storage_account" "tfbackend_sa" {
 
 resource "azurerm_storage_container" "tfbackend_blob" {
   name                  = var.az_storage_account_container_name
-  storage_account_id = azurerm_storage_account.tfbackend_sa.id
+  storage_account_id    = azurerm_storage_account.tfbackend_sa.id
   container_access_type = "private"
 
 }
