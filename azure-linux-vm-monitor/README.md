@@ -29,7 +29,7 @@ No modules.
 | [azurerm_network_interface.vm_nic](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) | resource |
 | [azurerm_network_security_group.vm_snet_nsg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
 | [azurerm_public_ip.labvm_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
-| [azurerm_resource_group.lab](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
+| [azurerm_resource_group.lab_rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 | [azurerm_subnet.subnets](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet_network_security_group_association.vm_snet_nsg_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
 | [azurerm_virtual_machine_extension.azure_monitor_linux_agent](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
@@ -44,7 +44,7 @@ No modules.
 | <a name="input_environment"></a> [environment](#input\_environment) | n/a | `string` | `"dev"` | no |
 | <a name="input_location"></a> [location](#input\_location) | n/a | `string` | `"canadaeast"` | no |
 | <a name="input_os_disk"></a> [os\_disk](#input\_os\_disk) | n/a | `map(string)` | <pre>{<br/>  "caching": "ReadWrite",<br/>  "disk_size_gb": "80",<br/>  "storage_account_type": "Standard_LRS"<br/>}</pre> | no |
-| <a name="input_project"></a> [project](#input\_project) | n/a | `string` | `"lab"` | no |
+| <a name="input_project"></a> [project](#input\_project) | n/a | `string` | `"lab_rg"` | no |
 | <a name="input_source_image_reference"></a> [source\_image\_reference](#input\_source\_image\_reference) | n/a | `map(string)` | <pre>{<br/>  "offer": "RHEL",<br/>  "publisher": "RedHat",<br/>  "sku": "93-gen2",<br/>  "version": "latest"<br/>}</pre> | no |
 | <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | Virtual machine sku | `string` | `"Standard_DS1_v2"` | no |
 

@@ -1,23 +1,23 @@
-resource "azurerm_resource_group" "lab" {
+resource "azurerm_resource_group" "lab_rg" {
   name     = local.resource_group_name
   location = local.location
 }
 
 resource "azurerm_virtual_network" "lab_vnet" {
   name                = local.virtual_network.name
-  location            = azurerm_resource_group.lab.location
-  resource_group_name = azurerm_resource_group.lab.name
+  location            = azurerm_resource_group.lab_rg.location
+  resource_group_name = azurerm_resource_group.lab_rg.name
   address_space       = [local.virtual_network.address_space]
 
   depends_on = [
-    azurerm_resource_group.lab
+    azurerm_resource_group.lab_rg
   ]
 }
 
 resource "azurerm_subnet" "subnets" {
   count                = length(local.subnets)
   name                 = local.subnets[count.index].name
-  resource_group_name  = azurerm_resource_group.lab.name
+  resource_group_name  = azurerm_resource_group.lab_rg.name
   virtual_network_name = azurerm_virtual_network.lab_vnet.name
   address_prefixes     = [local.subnets[count.index].address_prefix]
 
@@ -56,7 +56,7 @@ resource "azurerm_network_security_group" "vm_snet_nsg" {
   }
 
   depends_on = [
-    azurerm_resource_group.lab
+    azurerm_resource_group.lab_rg
   ]
 }
 

@@ -1,6 +1,5 @@
-variable "location" {
-  type    = string
-  default = "canadaeast"
+variable "subscription_id" {
+  description = "subscription_id"
 }
 
 variable "project" {

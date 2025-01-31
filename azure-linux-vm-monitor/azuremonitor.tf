@@ -1,7 +1,7 @@
 resource "azurerm_log_analytics_workspace" "workspace" {
   name                = "${var.project}-${var.environment}-log-analytics"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.lab.name
+  location            = local.location
+  resource_group_name = azurerm_resource_group.lab_rg.name
   sku                 = "PerGB2018"
   retention_in_days   = 30
 }
@@ -22,8 +22,8 @@ resource "azurerm_virtual_machine_extension" "azure_monitor_linux_agent" {
 
 resource "azurerm_monitor_data_collection_rule" "data_collection_rule" {
   name                = "${var.project}-${var.environment}-data-rules"
-  resource_group_name = azurerm_resource_group.lab.name
-  location            = var.location
+  resource_group_name = azurerm_resource_group.lab_rg.name
+  location            = local.location
 
   destinations {
     log_analytics {

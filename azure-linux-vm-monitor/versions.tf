@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">=3.11.0, <4.0"
+      version = ">=4.17.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -24,6 +24,7 @@ provider "azurerm" {
       prevent_deletion_if_contains_resources = false
     }
   }
+   subscription_id = var.subscription_id
 }
 
 provider "random" {}
