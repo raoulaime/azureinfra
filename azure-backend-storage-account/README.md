@@ -11,13 +11,13 @@ This Terraform project contains the configurations required to deploy a storage 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >1.9.4 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.11.0, <5.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=4.17.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=3.11.0, <5.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=4.17.0 |
 
 ## Modules
 
@@ -35,12 +35,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_az_location"></a> [az\_location](#input\_az\_location) | n/a | `string` | `"canadacentral"` | no |
-| <a name="input_az_region"></a> [az\_region](#input\_az\_region) | n/a | `string` | `"canadacentral"` | no |
-| <a name="input_az_resource_group"></a> [az\_resource\_group](#input\_az\_resource\_group) | Azure Resource Group Name | `string` | `"lab-backend-rg"` | no |
-| <a name="input_az_storage_account"></a> [az\_storage\_account](#input\_az\_storage\_account) | n/a | `string` | `"tfbackendrakit"` | no |
-| <a name="input_az_storage_account_container"></a> [az\_storage\_account\_container](#input\_az\_storage\_account\_container) | n/a | `string` | `"tfstate"` | no |
-| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | n/a | `string` | `"subscription_id"` | no |
+| <a name="input_az_location"></a> [az\_location](#input\_az\_location) | Azure Region | `string` | n/a | yes |
+| <a name="input_az_resource_group_name"></a> [az\_resource\_group\_name](#input\_az\_resource\_group\_name) | Azure Resource Group Name | `string` | n/a | yes |
+| <a name="input_az_storage_account_container_name"></a> [az\_storage\_account\_container\_name](#input\_az\_storage\_account\_container\_name) | Azure Terraform Backend Storage Account Container | `string` | n/a | yes |
+| <a name="input_az_storage_account_name"></a> [az\_storage\_account\_name](#input\_az\_storage\_account\_name) | Azure Storage Account Name | `string` | n/a | yes |
+| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | subscription\_id | `string` | n/a | yes |
 
 ## Outputs
 
