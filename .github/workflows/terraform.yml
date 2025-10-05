@@ -30,6 +30,9 @@ jobs:
   security-scan:
     name: Security Scan
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write   # required for upload-sarif
+      contents: read
 
     steps:
       - name: Checkout code
