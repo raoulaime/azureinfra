@@ -30,17 +30,6 @@ jobs:
       - name: Terraform Format
         run: terraform fmt -check -recursive -no-color
 
-  security-scan:
-    name: Security Scan
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write   # required for upload-sarif
-      contents: read
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Run Checkov
         id: checkov
         uses: bridgecrewio/checkov-action@v12
