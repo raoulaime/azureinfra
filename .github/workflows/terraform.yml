@@ -9,54 +9,48 @@ permissions:
   contents: read
 
 jobs:
-steps:
-  - uses: actions/checkout@v2
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
 
-  - name: Setup Terraform
-    uses: hashicorp/setup-terraform@v3
+    defaults:
+      run:
+        shell: bash
 
-  - name: Terraform Init
-    id: tf-init
-    working-directory: ./terraform
-    run: |
-      terraform init
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Terraform Plan
-    id: tf-plan
-    working-directory: ./terraform
-    run: |
-      terraform plan -no-color -out=tfplan
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
-  - uses: kishaningithub/setup-tf-summarize@v1
+      - name: Terraform Init
+        run: terraform init
 
-  - name: Print tf-summarize version and help
-    id: tf-summarize
-    working-directory: ./terraform
-    run: |
-      tf-summarize -md tfplan > tfplan.md
-      echo "## Terraform Plan" >> $GITHUB_STEP_SUMMARY
-      while IFS= read -r line; do
-        echo "$line" >> $GITHUB_STEP_SUMMARY
-      done < tfplan.md
+      - name: Terraform Format
+        run: terraform fmt -check -recursive -no-color
 
-  - name: Run Checkov
-    id: checkov
-    uses: bridgecrewio/checkov-action@v12
-    with:
-      directory: ./terraform
-      framework: terraform
-      output_format: github_failed_only
-      output_file_path: ./terraform
-      quiet: true
-      soft_fail: true
+  security_scan:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
 
-  - name: Checkov Report
-    id: checkov-report
-    working-directory: ./terraform
-    run: |
-      while IFS= read -r line; do
-        echo "$line" >> $GITHUB_STEP_SUMMARY
-      done < results_github_failed_only.md
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Checkov GitHub Action
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          output_format: cli,sarif
+          output_file_path: console,results.sarif
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        if: success() || failure()
+        with:
+          sarif_file: results.sarif
 
   docs:
     runs-on: ubuntu-latest
