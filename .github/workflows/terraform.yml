@@ -37,6 +37,7 @@ jobs:
           framework: terraform
           directory: .
           output_format: github_failed_only
+          output_file_path: ./results_github_failed_only.md
           quiet: true
           soft_fail: true
 
