@@ -42,7 +42,7 @@ jobs:
 
       - name: Checkov Report
         id: checkov-report
-        directory: .
+        working-directory: .
         run: |
           while IFS= read -r line; do
             echo "$line" >> $GITHUB_STEP_SUMMARY
