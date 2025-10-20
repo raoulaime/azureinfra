@@ -35,12 +35,14 @@ jobs:
         uses: bridgecrewio/checkov-action@v12
         with:
           framework: terraform
+          directory: .
           output_format: github_failed_only
           quiet: true
           soft_fail: true
 
       - name: Checkov Report
         id: checkov-report
+        directory: .
         run: |
           while IFS= read -r line; do
             echo "$line" >> $GITHUB_STEP_SUMMARY
